@@ -34,7 +34,7 @@ Solve Exercise 3 here:
 
 game.difficulty = 'Easy';
 
-// console.log(game);
+console.log(game);
 
 /*
 Exercise 4
@@ -47,7 +47,7 @@ Solve Exercise 4 here:
 
 game.party.push(pokemon[0]);
 
-// console.log(game);
+console.log(game);
 
 /*
 Exercise 5
@@ -60,7 +60,7 @@ Solve Exercise 5 here:
 
 game.party.push(pokemon[14], pokemon[17], pokemon[27]);
 
-// console.log(game);
+console.log(game);
 
 /*
 Exercise 6
@@ -77,7 +77,7 @@ for(let i = 0; i < game.gyms.length; i++){
   }
 }
 
-// console.log(game);
+console.log(game);
 
 /*
 Exercise 7
@@ -98,7 +98,7 @@ Solve Exercise 7 here:
 
 game.party[0] = pokemon[1];
 
-// console.log(game);
+console.log(game);
 
 /*
 Exercise 8
@@ -161,8 +161,8 @@ game.catchPokemon = function(pokemonObj){
 }
 
 game.catchPokemon(pokemon[37]);
-// console.log(game.party);
-// console.log(game.items);
+console.log(game.party);
+console.log(game.items);
 
 /*
 Exercise 12
@@ -178,7 +178,7 @@ for(let i = 0; i < game.gyms.length; i++){
   }
 }
 
-// console.log(game.gyms)
+console.log(game.gyms)
 
 /*
 Exercise 13
@@ -313,3 +313,107 @@ console.log(game.party);
 console.log(game.collection);
 console.log(game.items);
 
+/*
+Exercise 19
+Copy the `catchPokemon` method that you just wrote above, and paste it below. The time has come to make it so that we cannot catch a Pokemon when we do not have any pokeballs to catch it with. 
+
+Modify the method so that if there are no pokeballs a message will be displayed that there are not enough pokeballs to catch the desired Pokemon.
+
+Also, ensure that the Pokemon isn't added to the `game.party` or the `game.collection`.
+
+Solve Exercise 19 here:
+*/
+
+game.items[1].quantity = 0;
+console.log(game.items[1]);
+
+game.catchPokemon = function(pokemonObj){
+  let partySize = game.party.length;
+  if(partySize < 6 && game.items[1].quantity > 0){
+    game.party.push(pokemonObj);
+    game.items[1].quantity = game.items[1].quantity - 1;
+  } else if (partySize >= 6 && game.items[1].quantity > 0) {
+    game.collection.push(pokemonObj);
+    game.items[1].quantity = game.items[1].quantity - 1;
+  } else {
+    console.log("You have no Pokeballs");
+  }
+}
+
+game.catchPokemon(pokemon[11]);
+console.log("Party: ",game.party);
+console.log('Collection: ',game.collection);
+console.log(game.items[1]);
+
+/*
+Exercise 20
+Copy the `catchPokemon` method that you just wrote above, and paste it below. Modify is so that you can just pass in the name of a Pokemon instead of an entire object, and the method will look up the Pokemon from the data set for you.
+
+The string passed in should be allowed to be any case (for example, if the string 'PiKacHU' is passed to the function, it should match to 'Pikachu' in the data set). 
+
+If there is not a match, then return a string noting that the selected Pokemon does not exist. Ensure you do not decrement the pokeball count if an invalid Pokemon name is passed in, and also ensure that the Pokemon isn't added to the `game.party` or the `game.collection`.
+
+Solve Exercise 20 here:
+*/
+
+game.items[1].quantity = 5;
+
+game.catchPokemon = function(pokemonObj) {
+  let partySize = game.party.length;
+  if(partySize < 6 && game.items[1].quantity > 0){
+    game.party.push(pokemonObj);
+    game.items[1].quantity = game.items[1].quantity - 1;
+  } else if (partySize >= 6 && game.items[1].quantity > 0) {
+    game.collection.push(pokemonObj);
+    game.items[1].quantity = game.items[1].quantity - 1;
+  } else {
+    console.log("You have no Pokeballs");
+  }
+}
+
+game.catchPokemon('pikachu');
+
+//Really struggled with this one, couldn't figure it out
+
+/*
+Exercise 21
+Dynamically construct an object with the existing `pokemon` data sorted by the different pokemon types. The object will have this structure:
+
+{
+  grass: [
+    { number: 1, name: 'Bulbasaur', type: 'grass', hp: 45, starter: true },
+    { number: 2, name: 'Ivysaur', type: 'grass', hp: 60, starter: false },
+    { number: 3, name: 'Venusaur', type: 'grass', hp: 80, starter: false },
+    * more grass type Pokemon objects...
+  ],
+  fire: [
+    { number: 4, name: 'Charmander', type: 'fire', hp: 39, starter: true },
+    * more fire type Pokemon objects...
+  ],
+  water: [
+    * water type Pokemon objects...
+  ],
+  * etc... until there is an array for every Pokemon type!
+}
+
+Log the object when it's constructed.
+
+Solve Exercise 21 here:
+*/
+
+
+let grass = [];
+let fire = [];
+let water = [];
+let bug = [];
+let normal = [];
+let poison = [];
+let electric = [];
+let ground = [];
+let fairy = [];
+let fighting = [];
+let psychic = [];
+let rock = [];
+let ghost = [];
+let ice = [];
+let dragon = [];
